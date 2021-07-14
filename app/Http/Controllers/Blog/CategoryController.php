@@ -22,11 +22,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        $item = new Category(); // создаем объект класса пустой, в нем нет данных
-        $categoryList = Category::all();
-
-        return view('blog.categories.create_category',
-            compact('item', 'categoryList'));
+        return view('blog.categories.create_category');
     }
 
     /**
@@ -40,7 +36,6 @@ class CategoryController extends Controller
         $data = $request->input();
         $new_category = (new Category())->create($data);
 
-        //return redirect()->back()->withSuccess('Категория успешно добавлена');
         if ($new_category) {
             return redirect()->back() // делаем редирект на изменение
             ->with(['success' => 'Успешно сохранено']); // отправляем 'success'
@@ -48,6 +43,36 @@ class CategoryController extends Controller
             return back()->withErrors(['msg' => 'Ошибка сохранения'])
                 ->withInput(); // чтобы человек не потерял данные при ошибки
         }
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param int $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        $category = Category::findOrFail($id);
+        $categoryList = Category::all();
+
+        return view('blog.categories.edit_category',
+            compact('category', 'categoryList'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, Category $category)
+    {
+        $category->title = $request->title;
+        $category->save();
+
+        return redirect()->back()->withSuccess('Категория была успешно обновлена');
     }
 
     /**

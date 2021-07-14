@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Blog;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class MaterialController extends Controller
@@ -14,7 +15,9 @@ class MaterialController extends Controller
      */
     public function index()
     {
-        return view('blog.materials.view_material');
+        $materials = Category::orderBy('id', 'ASC')->paginate(10);
+
+        return view('blog.materials.list_material', compact('materials'));
     }
 
     /**
