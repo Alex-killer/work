@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Blog;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\Material;
 use Illuminate\Http\Request;
 
 class MaterialController extends Controller
@@ -15,7 +16,7 @@ class MaterialController extends Controller
      */
     public function index()
     {
-        $materials = Category::orderBy('id', 'ASC')->paginate(10);
+        $materials = Material::orderBy('id', 'ASC')->paginate(10);
 
         return view('blog.materials.list_material', compact('materials'));
     }
