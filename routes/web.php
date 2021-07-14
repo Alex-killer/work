@@ -18,7 +18,7 @@ $groupData = [
     'prefix'    => '/', // отображение в адресной строке (url)
 ];
 Route::group($groupData, function () {
-    $methods = ['index', 'edit', 'update', 'create', 'store', 'destroy']; //index - список всех категорий edit - редактирование update - когда нажимаем сохранить идем сюда create - создание категории store - переходим сюда, когда нажимаем на кнопку создать
+    $methods = ['index', 'show', 'edit', 'update', 'create', 'store', 'destroy']; //index - список всех категорий edit - редактирование update - когда нажимаем сохранить идем сюда create - создание категории store - переходим сюда, когда нажимаем на кнопку создать
     Route::resource('/', 'MaterialController')
         ->only($methods) // для каких методов нужно создать маршруты
         ->names('blog.material');

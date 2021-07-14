@@ -54,10 +54,9 @@ class CategoryController extends Controller
     public function edit($id)
     {
         $category = Category::findOrFail($id);
-        $categoryList = Category::all();
 
         return view('blog.categories.edit_category',
-            compact('category', 'categoryList'));
+            compact('category'));
     }
 
     /**

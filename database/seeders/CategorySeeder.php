@@ -14,7 +14,7 @@ class CategorySeeder extends Seeder
     public function run()
     {
         for ($i = 1; $i <=11; $i++) {
-            $cName = 'Категория #' .$i;
+            $cName = 'Category #' .$i;
 
             $categories[] = [
                 'title'     => $cName,

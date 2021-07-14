@@ -9,19 +9,19 @@
         <div class="col-lg-6 col-md-8">
             <div class="d-flex text-break">
                 <p class="col fw-bold mw-25 mw-sm-30 me-2">Авторы</p>
-                <p class="col">Максим Дорофеев</p>
+                <p class="col">{{ $material->author }}</p>
             </div>
             <div class="d-flex text-break">
                 <p class="col fw-bold mw-25 mw-sm-30 me-2">Тип</p>
-                <p class="col">Книга</p>
+                <p class="col">{{ $material->types->title }}</p>
             </div>
             <div class="d-flex text-break">
                 <p class="col fw-bold mw-25 mw-sm-30 me-2">Категория</p>
-                <p class="col">Саморазвитие / Личная эффективность</p>
+                <p class="col">{{ $material->categories->title }}</p>
             </div>
             <div class="d-flex text-break">
                 <p class="col fw-bold mw-25 mw-sm-30 me-2">Описание</p>
-                <p class="col">Почитать стоит для чиного роста</p>
+                <p class="col">{{ $material->description }}</p>
             </div>
         </div>
     </div>

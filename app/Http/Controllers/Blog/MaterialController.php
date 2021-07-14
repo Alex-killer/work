@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Blog;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Material;
+use App\Models\Type;
 use Illuminate\Http\Request;
 
 class MaterialController extends Controller
@@ -16,7 +17,9 @@ class MaterialController extends Controller
      */
     public function index()
     {
-        $materials = Material::orderBy('id', 'ASC')->paginate(10);
+        $materials = Material::with('categories', 'types')
+            ->orderBy('id', 'asc')
+            ->paginate(10);
 
         return view('blog.materials.list_material', compact('materials'));
     }
@@ -28,7 +31,12 @@ class MaterialController extends Controller
      */
     public function create()
     {
-        //
+        $item = new Category(); // создаем объект класса пустой, в нем нет данных
+        $categoryList = Category::orderBy('id', 'ASC')->get();
+        $typeList = Type::orderBy('id', 'ASC')->get();
+
+        return view('blog.materials.create_material',
+            compact('item', 'categoryList', 'typeList'));
     }
 
     /**
@@ -39,7 +47,16 @@ class MaterialController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->input();
+        $new_material = (new Material())->create($data);
+
+        if ($new_material) {
+            return redirect()->back() // делаем редирект на изменение
+            ->with(['success' => 'Успешно сохранено']); // отправляем 'success'
+        } else {
+            return back()->withErrors(['msg' => 'Ошибка сохранения'])
+                ->withInput(); // чтобы человек не потерял данные при ошибки
+        }
     }
 
     /**
@@ -50,7 +67,9 @@ class MaterialController extends Controller
      */
     public function show($id)
     {
-        //
+        $materials = Material::findOrFail($id);
+
+        return view('blog.materials.view_material', compact('materials'));
     }
 
     /**
@@ -82,8 +101,9 @@ class MaterialController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Material $material)
     {
-        //
+        $material->delete();
+        return redirect()->back()->withSuccess('Категория была успешно удалена');
     }
 }
