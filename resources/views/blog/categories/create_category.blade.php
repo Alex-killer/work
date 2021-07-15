@@ -16,9 +16,8 @@
         <div class="col-lg-5 col-md-8">
             <form action="{{ route('blog.category.store') }}" method="POST">
                 @csrf
-            <form>
                 <div class="form-floating mb-3">
-                    <input type="text" name="title" class="form-control" placeholder="Напишите название" id="id">
+                    <input type="text" name="title" class="form-control" placeholder="Напишите название" id="id" required>
                     <label for="floatingName">Название</label>
                     <div class="invalid-feedback">
                         Пожалуйста, заполните поле

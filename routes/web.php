@@ -30,6 +30,7 @@ Route::group($groupData, function () {
     Route::resource('tag', 'TagController')
         ->only($methods)
         ->names('blog.tag');
+
     Route::resource('link', 'LinkController')
         ->only($methods)
         ->names('blog.link');

@@ -16,7 +16,6 @@
         <div class="col-lg-5 col-md-8">
             <form action="{{ route('blog.material.store') }}" method="POST">
                 @csrf
-            <form>
                 <div class="form-floating mb-3">
                     <select name="category_id"
                             id="category_id"
@@ -56,7 +55,7 @@
                     </div>
                 </div>
                 <div class="form-floating mb-3">
-                    <input name="title" type="text" class="form-control" placeholder="Напишите название" id="floatingName">
+                    <input name="title" type="text" class="form-control" placeholder="Напишите название" id="floatingName" required>
                     <label for="floatingName">Название</label>
                     <div class="invalid-feedback">
                         Пожалуйста, заполните поле
@@ -70,7 +69,7 @@
                     </div>
                 </div>
                 <div class="form-floating mb-3">
-            <textarea name="description" class="form-control" placeholder="Напишите краткое описание" id="floatingDescription"
+            <textarea name="description" class="form-control" placeholder="Напишите краткое описание" id="floatingDescription" required
                       style="height: 100px"></textarea>
                     <label for="floatingDescription">Описание</label>
                     <div class="invalid-feedback">

@@ -1,4 +1,8 @@
+@extends('blog.layouts.main_layout')
 
+@section('title', 'Материалы')
+
+@section('content')
 <div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel"
      tabindex="-1">
     <div class="modal-dialog modal-dialog-centered">
@@ -22,7 +26,7 @@
                     <label for="floatingModalLink">Ссылка</label>
                     <div class="invalid-feedback">
                         Пожалуйста, заполните поле
-                    </div>
+                </div>
                 </div>
             </div>
             <div class="modal-footer">
@@ -30,3 +34,6 @@
                 <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Закрыть</button>
             </div>
         </div>
+    </div>
+</div>
+@endsection

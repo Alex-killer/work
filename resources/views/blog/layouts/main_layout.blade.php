@@ -30,13 +30,13 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="{{ route('blog.material.index') }}"">Материалы</a>
+                            <a class="nav-link active" aria-current="page" href="{{ route('blog.material.index') }}">Материалы</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('blog.tag.index') }}"">Теги</a>
+                            <a class="nav-link" href="{{ route('blog.tag.index') }}">Теги</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('blog.category.index') }}"">Категории</a>
+                            <a class="nav-link" href="{{ route('blog.category.index') }}">Категории</a>
                         </li>
                     </ul>
                 </div>

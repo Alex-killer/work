@@ -18,6 +18,6 @@ class DatabaseSeeder extends Seeder
         // \App\Models\User::factory(10)->create();
         $this->call(CategorySeeder::class);
         Material::factory()->count(15)->create();
-        Link::factory()->count(20)->create();
+        Link::factory()->count(30)->create();
     }
 }
