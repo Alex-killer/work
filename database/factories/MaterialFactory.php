@@ -22,7 +22,7 @@ class MaterialFactory extends Factory
     public function definition()
     {
         $title = $this->faker->sentence(rand(3, 8), true);
-        $txt = $this->faker->realText(rand(1000, 4000));
+        $txt = $this->faker->realText(rand(100, 500));
 
             $data = [
                 'category_id'   => rand(1, 11),

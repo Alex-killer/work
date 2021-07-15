@@ -27,4 +27,9 @@ class Material extends Model
     {
         return $this->hasOne(Type::class, 'id', 'type_id');
     }
+
+    public function links()
+    {
+        return $this->hasMany(Link::class, 'material_id', 'id');
+    }
 }

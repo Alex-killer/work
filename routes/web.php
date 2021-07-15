@@ -19,7 +19,7 @@ $groupData = [
 ];
 Route::group($groupData, function () {
     $methods = ['index', 'show', 'edit', 'update', 'create', 'store', 'destroy']; //index - список всех категорий edit - редактирование update - когда нажимаем сохранить идем сюда create - создание категории store - переходим сюда, когда нажимаем на кнопку создать
-    Route::resource('/', 'MaterialController')
+    Route::resource('materials', 'MaterialController')
         ->only($methods) // для каких методов нужно создать маршруты
         ->names('blog.material');
 
@@ -30,4 +30,7 @@ Route::group($groupData, function () {
     Route::resource('tag', 'TagController')
         ->only($methods)
         ->names('blog.tag');
+    Route::resource('link', 'LinkController')
+        ->only($methods)
+        ->names('blog.link');
 });

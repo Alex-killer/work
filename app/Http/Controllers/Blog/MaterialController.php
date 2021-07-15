@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Blog;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\Link;
 use App\Models\Material;
 use App\Models\Type;
 use Illuminate\Http\Request;
@@ -31,7 +32,7 @@ class MaterialController extends Controller
      */
     public function create()
     {
-        $item = new Category(); // создаем объект класса пустой, в нем нет данных
+        $item = new Category();
         $categoryList = Category::orderBy('id', 'ASC')->get();
         $typeList = Type::orderBy('id', 'ASC')->get();
 
@@ -51,7 +52,7 @@ class MaterialController extends Controller
         $new_material = (new Material())->create($data);
 
         if ($new_material) {
-            return redirect()->back() // делаем редирект на изменение
+            return redirect()->back()
             ->with(['success' => 'Успешно сохранено']); // отправляем 'success'
         } else {
             return back()->withErrors(['msg' => 'Ошибка сохранения'])
@@ -65,11 +66,17 @@ class MaterialController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Material $material)
     {
-        $materials = Material::findOrFail($id);
+        $linkList = Link::where('material_id', '=', $material->id)->get();
+        $materials = Material::first();
 
-        return view('blog.materials.view_material', compact('materials'));
+        return view('blog.materials.view_material',
+            compact('linkList', 'materials'));
+
+//        $materials = Material::findOrFail($id)->has('links')->with("links")->get();;
+//
+//        return view('blog.materials.view_material', compact('materials'));
     }
 
     /**
@@ -80,7 +87,12 @@ class MaterialController extends Controller
      */
     public function edit($id)
     {
-        //
+        $material = Material::findOrFail($id);
+        $categoryList = Category::orderBy('id', 'ASC')->get();
+        $typeList = Type::orderBy('id', 'ASC')->get();
+
+        return view('blog.materials.edit_material',
+            compact('material', 'categoryList', 'typeList'));
     }
 
     /**
@@ -90,9 +102,16 @@ class MaterialController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Material $material)
     {
-        //
+        $material->type_id = $request->type_id;
+        $material->category_id = $request->category_id;
+        $material->title = $request->title;
+        $material->description = $request->description;
+        $material->author = $request->author;
+        $material->save();
+
+        return redirect()->back()->withSuccess('Категория была успешно обновлена');
     }
 
     /**

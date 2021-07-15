@@ -19,7 +19,7 @@
                 @method('PATCH')
             <form>
                 <div class="form-floating mb-3">
-                    <input type="text" value="{{ $category['title'] }}" name="title" class="form-control" id="id">
+                    <input type="text" value="{{ $category->title }}" name="title" class="form-control" id="id">
                     <label for="floatingName">Название</label>
                     <div class="invalid-feedback">
                         Пожалуйста, заполните поле
