@@ -14,7 +14,7 @@
     @endif
     <div class="row">
         <div class="col-lg-5 col-md-8">
-            <form action="{{ route('blog.material.update', $material->id) }}" method="POST">
+            <form action="{{ route('blog.link.update', $material->id) }}" method="POST">
                 @csrf
                 @method('PATCH')
             <form>

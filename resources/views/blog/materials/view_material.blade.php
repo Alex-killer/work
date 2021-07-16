@@ -82,11 +82,16 @@
             <ul class="list-group mb-4">
                 @foreach ($linkList as $linkOption)
                 <li class="list-group-item list-group-item-action d-flex justify-content-between">
-                        <a href="{{ $linkOption->description }}" class="me-3">
-                        <td>{{ $linkOption->title }}</td>
+                       @if($linkOption->title !== Null)
+                            <a href="{{ $linkOption->description }}" class="me-3">
+                                {{ $linkOption->title }}
+                       @else
+                            <a href="{{ $linkOption->description }}" class="me-3">
+                                {{ $linkOption->description }}
+                       @endif
                     </a>
                     <span class="text-nowrap">
-                    <a data-bs-toggle="modal" href="#exampleModalToggle" role="button" class="text-decoration-none me-2">
+                    <a data-bs-toggle="modal" href="#exampleModalToggle1" role="button" class="text-decoration-none me-2">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                              class="bi bi-pencil" viewBox="0 0 16 16">
                 <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
@@ -113,39 +118,6 @@
 </div>
 
 
-<div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel"
-tabindex="-1">
-<div class="modal-dialog modal-dialog-centered">
-<div class="modal-content">
-    <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalToggleLabel">Добавить ссылку</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-    </div>
-    <form action="{{ route('blog.link.store') }}" method="POST">
-        @csrf
-    <div class="modal-body">
-        <div class="form-floating mb-3">
-            <input type="text" class="form-control" placeholder="Добавьте подпись"
-                   id="floatingModalSignature"
-                   value="#">
-            <label for="floatingModalSignature">Подпись</label>
-            <div class="invalid-feedback">
-                Пожалуйста, заполните поле
-            </div>
-
-        </div>
-        <div class="form-floating mb-3">
-            <input type="text" class="form-control" placeholder="Добавьте ссылку" id="floatingModalLink" value="#" required>
-            <label for="floatingModalLink">Ссылка</label>
-            <div class="invalid-feedback">
-                Пожалуйста, заполните поле
-            </div>
-        </div>
-    </div>
-    <div class="modal-footer">
-        <button type="submit" class="btn btn-primary">Добавить</button>
-        <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Закрыть</button>
-    </div>
-    </form>
-</div>
+@include('blog.links.create_link')
+@include('blog.links.edit_link')
 @endsection

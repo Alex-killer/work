@@ -19,14 +19,13 @@
                 <div class="form-floating mb-3">
                     <select name="category_id"
                             id="category_id"
-                            class="form-control"
+                            class="form-select"
                             placeholder="Выберите категорию"
                             required>
                         <option selected>Выберите тип</option>
-                        @foreach($categoryList as $categoryOption)
-                            <option value="{{ $categoryOption->id }}"
-                                    @if($categoryOption->id == $item->category_id) selected @endif>
-                                {{ $categoryOption->title }}
+                        @foreach($typeList as $typeOption)
+                            <option value="{{ $typeOption->id }}">
+                                {{ $typeOption->id }}. {{ $typeOption->title }}
                             </option>
                         @endforeach
                     </select>
@@ -38,14 +37,13 @@
                 <div class="form-floating mb-3">
                     <select name="type_id"
                             id="type_id"
-                            class="form-control"
+                            class="form-select"
                             placeholder="Выберите категорию"
                             required>
                         <option selected>Выберите категорию</option>
-                        @foreach($typeList as $typeOption)
-                            <option value="{{ $typeOption->id }}"
-                                    @if($typeOption->id == $item->type_id) selected @endif>
-                                {{ $typeOption->id }}. {{ $typeOption->title }}
+                        @foreach($categoryList as $categoryOption)
+                            <option value="{{ $categoryOption->id }}">
+                                {{ $categoryOption->title }}
                             </option>
                         @endforeach
                     </select>
