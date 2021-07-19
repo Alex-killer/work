@@ -15,16 +15,25 @@
     @endif
     <div class="row">
         <div class="col-md-8">
-            <form>
+            <form action="{{ route('blog.material.index') }}" method="GET">
                 <div class="input-group mb-3">
-                    <input type="text" class="form-control" placeholder=""
+                    <input type="text" class="form-control" name="search" placeholder="Что искать?"
                            aria-label="Example text with button addon" aria-describedby="button-addon1">
-                    <button class="btn btn-primary" type="button" id="button-addon1">Искать</button>
+                    <button class="btn btn-primary" type="submit" id="button-addon1">Искать</button>
                 </div>
             </form>
         </div>
     </div>
     <div class="table-responsive">
+        @if(isset($_GET['search']))
+            @if(count($materials)>0)
+                <h2>Результаты поиска по запросу "<?=$_GET['search']?>"</h2>
+                <p class="lead">Всего найдено {{ count($materials) }} материалов</p>
+
+            @else
+                <h2>По запросу "<?=$_GET['search']?>" ничего не найдено</h2>
+            @endif
+        @endif
         <table class="table">
             <thead>
             <tr>
@@ -40,8 +49,8 @@
             <tr>
                 <td><a href="{{ route('blog.material.show', $material->id) }}">{{ $material->title }}</a></td>
                 <td>{{ $material->author }}</td>
-                <td>{{ $material->types->title }}</td>
-                <td>{{ $material->categories->title }}</td>
+                <td>{{ $material->type->title }}</td>
+                <td>{{ $material->category->name }}</td>
                 <td class="text-nowrap text-end">
                     <a href="{{ route('blog.material.edit', $material->id) }}" class="text-decoration-none me-2">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"

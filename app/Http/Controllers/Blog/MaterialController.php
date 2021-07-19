@@ -16,13 +16,23 @@ class MaterialController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $materials = Material::with('categories', 'types')
-            ->orderBy('id', 'asc')
+        $builder = Material::with('category', 'type');
+
+        if ($request->search) {
+            $builder->where('title', 'ILIKE', '%' . $request->search . '%')
+            ->orWhere('description', 'ILIKE', '%'. $request->search . '%')
+            ->orWhereHas('category', function ($query) use ($request) {
+                $query->where('name', 'ILIKE', '%' . $request->search . '%');
+            });
+        }
+
+        $materials = $builder->orderBy('id', 'ASC')
             ->paginate(10);
 
         return view('blog.materials.list_material', compact('materials'));
+
     }
 
     /**
@@ -69,14 +79,9 @@ class MaterialController extends Controller
     public function show(Material $material)
     {
         $linkList = Link::where('material_id', '=', $material->id)->get();
-        $materials = Material::first();
 
         return view('blog.materials.view_material',
-            compact('linkList', 'materials'));
-
-//        $materials = Material::findOrFail($id)->has('links')->with("links")->get();;
-//
-//        return view('blog.materials.view_material', compact('materials'));
+            compact('linkList', 'material'));
     }
 
     /**

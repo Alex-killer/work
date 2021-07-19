@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Http\Controllers\Blog\CategoryController;
+use App\Models\Category;
 use App\Models\Material;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -25,7 +27,7 @@ class MaterialFactory extends Factory
         $txt = $this->faker->realText(rand(100, 500));
 
             $data = [
-                'category_id'   => rand(1, 11),
+                'category_id'   => Category::InRandomOrder()->first()->id,
                 'author'        => $this->faker->name,
                 'type_id'       => rand(1, 6),
                 'title'         => $title,

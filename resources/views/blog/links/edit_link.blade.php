@@ -6,18 +6,22 @@
                 <h5 class="modal-title" id="exampleModalToggleLabel">Добавить ссылку</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="{{ route('blog.link.store') }}" method="POST">
+            <form action="{{ route('blog.link.update', $linkOption->id) }}" method="POST">
                 @csrf
                 @method('PATCH')
                 <div class="modal-body">
+                    <input type="hidden" name="material_id" value="{{ $material->id }}">
 {{--                    @foreach ($linkList as $linkOption)--}}
 {{--                        <option value="{{ $linkOption->material_id }}"--}}
 {{--                                @if($linkOption->material_id == $material->id) selected @endif>--}}
 {{--                        </option>--}}
                         <div class="form-floating mb-3">
-                            <input name ="title" type="text" class="form-control" placeholder="Добавьте подпись"
+                            <input name ="title"
+                                   type="text"
+                                   class="form-control"
+                                   placeholder="Добавьте подпись"
                                    id="floatingModalSignature"
-                                   value="#">
+                                   value="{{ $linkOption->title }}">
                             <label for="floatingModalSignature">Подпись</label>
                             <div class="invalid-feedback">
                                 Пожалуйста, заполните поле
@@ -25,7 +29,13 @@
 
                         </div>
                         <div class="form-floating mb-3">
-                            <input name="description" type="text" class="form-control" placeholder="Добавьте ссылку" id="floatingModalLink" value="#" required>
+                            <input name="description"
+                                   type="text"
+                                   class="form-control"
+                                   placeholder="Добавьте ссылку"
+                                   id="floatingModalLink"
+                                   value="{{ $linkOption->description }}"
+                                   required>
                             <label for="floatingModalLink">Ссылка</label>
                             <div class="invalid-feedback">
                                 Пожалуйста, заполните поле
@@ -41,7 +51,7 @@
 {{--                    @endforeach--}}
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary">Добавить</button>
+                    <button type="submit" class="btn btn-primary">Обновить</button>
                     <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Закрыть</button>
                 </div>
             </form>

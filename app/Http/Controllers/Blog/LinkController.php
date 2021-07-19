@@ -18,8 +18,12 @@ class LinkController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->input();
-        $new_link = (new Link())->create($data);
+        $new_link = new Link();
+        $new_link->material_id = $request->material_id;
+        $new_link->title = $request->title;
+        $new_link->description = $request->description;
+        $new_link->save();
+
 
         if ($new_link) {
             return redirect()->back() // делаем редирект на изменение
@@ -34,8 +38,24 @@ class LinkController extends Controller
     {
         $link = Link::findOrFail($id);
 
-        return view('blog.links.edit_link',
-            compact('link'));
+        return view('blog.links.edit_link',compact('link'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, Link $link)
+    {
+        $link->material_id = $request->material_id;
+        $link->title = $request->title;
+        $link->description = $request->description;
+        $link->save();
+
+        return redirect()->back()->withSuccess('Ссылка была успешно обновлена');
     }
 
     /**

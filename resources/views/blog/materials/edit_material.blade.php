@@ -14,21 +14,20 @@
     @endif
     <div class="row">
         <div class="col-lg-5 col-md-8">
-            <form action="{{ route('blog.link.update', $material->id) }}" method="POST">
+            <form action="{{ route('blog.material.update', $material->id) }}" method="POST">
                 @csrf
                 @method('PATCH')
-            <form>
                 <div class="form-floating mb-3">
-                    <select name="category_id"
-                            id="category_id"
+                    <select name="type_id"
+                            id="type_id"
                             class="form-control"
                             placeholder="Выберите категорию"
                             required>
                         <option selected>Выберите тип</option>
-                        @foreach($categoryList as $categoryOption)
-                            <option value="{{ $categoryOption->id }}"
-                                    @if($categoryOption->id == $material->category_id) selected @endif>
-                                {{ $categoryOption->title }}
+                        @foreach($typeList as $typeOption)
+                            <option value="{{ $typeOption->id }}"
+                                    @if($typeOption->id == $material->type_id) selected @endif>
+                                {{ $typeOption->id }}. {{ $typeOption->title }}
                             </option>
                         @endforeach
                     </select>
@@ -38,17 +37,16 @@
                     </div>
                 </div>
                 <div class="form-floating mb-3">
-                    <select
-                        name="type_id"
-                            id="type_id"
+                    <select name="category_id"
+                            id="category_id"
                             class="form-control"
                             placeholder="Выберите категорию"
                             required>
                         <option selected>Выберите категорию</option>
-                        @foreach($typeList as $typeOption)
-                            <option value="{{ $typeOption->id }}"
-                                    @if($typeOption->id == $material->type_id) selected @endif>
-                                {{ $typeOption->id }}. {{ $typeOption->title }}
+                        @foreach($categoryList as $categoryOption)
+                            <option value="{{ $categoryOption->id }}"
+                                    @if($categoryOption->id == $material->category_id) selected @endif>
+                                {{ $categoryOption->name }}
                             </option>
                         @endforeach
                     </select>

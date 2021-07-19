@@ -4,24 +4,24 @@
 
 @section('content')
 <div class="container">
-    <h1 class="my-md-5 my-4">{{ $materials->title }}</h1>
+    <h1 class="my-md-5 my-4">{{ $material->title }}</h1>
     <div class="row mb-3">
         <div class="col-lg-6 col-md-8">
             <div class="d-flex text-break">
                 <p class="col fw-bold mw-25 mw-sm-30 me-2">Авторы</p>
-                <p class="col">{{ $materials->author }}</p>
+                <p class="col">{{ $material->author }}</p>
             </div>
             <div class="d-flex text-break">
                 <p class="col fw-bold mw-25 mw-sm-30 me-2">Тип</p>
-                <p class="col">{{ $materials->types->title }}</p>
+                <p class="col">{{ $material->type->title }}</p>
             </div>
             <div class="d-flex text-break">
                 <p class="col fw-bold mw-25 mw-sm-30 me-2">Категория</p>
-                <p class="col">{{ $materials->categories->title }}</p>
+                <p class="col">{{ $material->category->name }}</p>
             </div>
             <div class="d-flex text-break">
                 <p class="col fw-bold mw-25 mw-sm-30 me-2">Описание</p>
-                <p class="col">{{ $materials->description }}</p>
+                <p class="col">{{ $material->description }}</p>
             </div>
         </div>
     </div>
@@ -108,7 +108,7 @@
                                       d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
                             </svg>
                         </Button>
-                    </form>
+                </form>
                 </span>
                 </li>
                 @endforeach

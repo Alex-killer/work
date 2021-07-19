@@ -9,21 +9,20 @@ class Material extends Model
 {
     use HasFactory;
 
-    protected $fillable
-        = [
-            'type_id',
-            'category_id',
-            'author',
-            'description',
-            'title'
-        ];
+    protected $fillable = [
+        'type_id',
+        'category_id',
+        'author',
+        'description',
+        'title'
+    ];
 
-    public function categories()
+    public function category()
     {
         return $this->hasOne(Category::class, 'id', 'category_id');
     }
 
-    public function types()
+    public function type()
     {
         return $this->hasOne(Type::class, 'id', 'type_id');
     }

@@ -23,7 +23,7 @@
                 @foreach ($categories as $category)
                 <li class="list-group-item list-group-item-action d-flex justify-content-between">
                     <span class="me-3">
-                        {{ $category->title }}
+                        {{ $category->name }}
                     </span>
                     <td class="project-actions text-right">
                     <span class="text-nowrap">

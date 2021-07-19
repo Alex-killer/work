@@ -1,17 +1,11 @@
 <?php
 
+
+use App\Http\Controllers\Blog\MainController;
+use App\Http\Controllers\Blog\MaterialController;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+Route::get('/', [MainController::class, 'index'])->name('index');
 
 $groupData = [
     'namespace' => 'App\Http\Controllers\Blog', // путь до самого контроллера
@@ -20,18 +14,15 @@ $groupData = [
 Route::group($groupData, function () {
     $methods = ['index', 'show', 'edit', 'update', 'create', 'store', 'destroy']; //index - список всех категорий edit - редактирование update - когда нажимаем сохранить идем сюда create - создание категории store - переходим сюда, когда нажимаем на кнопку создать
     Route::resource('materials', 'MaterialController')
-        ->only($methods) // для каких методов нужно создать маршруты
-        ->names('blog.material');
+            ->only($methods) // для каких методов нужно создать маршруты
+            ->names('blog.material');
 
     Route::resource('categories', 'CategoryController')
         ->only($methods)
         ->names('blog.category');
 
-    Route::resource('tag', 'TagController')
-        ->only($methods)
-        ->names('blog.tag');
-
     Route::resource('link', 'LinkController')
         ->only($methods)
         ->names('blog.link');
 });
+

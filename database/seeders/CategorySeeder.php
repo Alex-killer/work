@@ -15,11 +15,7 @@ class CategorySeeder extends Seeder
     {
         for ($i = 1; $i <=11; $i++) {
             $cName = 'Category #' .$i;
-
-            $categories[] = [
-                'title'     => $cName,
-
-            ];
+            $categories[] = ['name' => $cName];
         }
 
         \DB::table('categories')->insert($categories);
