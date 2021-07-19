@@ -8,13 +8,13 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [MainController::class, 'index'])->name('index');
 
 $groupData = [
-    'namespace' => 'App\Http\Controllers\Blog', // путь до самого контроллера
-    'prefix'    => '/', // отображение в адресной строке (url)
+    'namespace' => 'App\Http\Controllers\Blog',
+    'prefix'    => '/',
 ];
 Route::group($groupData, function () {
-    $methods = ['index', 'show', 'edit', 'update', 'create', 'store', 'destroy']; //index - список всех категорий edit - редактирование update - когда нажимаем сохранить идем сюда create - создание категории store - переходим сюда, когда нажимаем на кнопку создать
+    $methods = ['index', 'show', 'edit', 'update', 'create', 'store', 'destroy'];
     Route::resource('materials', 'MaterialController')
-            ->only($methods) // для каких методов нужно создать маршруты
+            ->only($methods)
             ->names('blog.material');
 
     Route::resource('categories', 'CategoryController')
