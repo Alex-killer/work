@@ -11,10 +11,6 @@
                 @method('PATCH')
                 <div class="modal-body">
                     <input type="hidden" name="material_id" value="{{ $material->id }}">
-{{--                    @foreach ($linkList as $linkOption)--}}
-{{--                        <option value="{{ $linkOption->material_id }}"--}}
-{{--                                @if($linkOption->material_id == $material->id) selected @endif>--}}
-{{--                        </option>--}}
                         <div class="form-floating mb-3">
                             <input name ="title"
                                    type="text"
@@ -40,15 +36,7 @@
                             <div class="invalid-feedback">
                                 Пожалуйста, заполните поле
                             </div>
-                            {{--            <option selected>Выберите категорию</option>--}}
-                            {{--            @foreach($linkList as $linkOption)--}}
-                            {{--                <option value="{{ $typeOption->id }}"--}}
-                            {{--                        @if($typeOption->id == $material->type_id) selected @endif>--}}
-                            {{--                    {{ $typeOption->id }}. {{ $typeOption->title }}--}}
-                            {{--                </option>--}}
-                            {{--            @endforeach--}}
                         </div>
-{{--                    @endforeach--}}
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-primary">Обновить</button>
