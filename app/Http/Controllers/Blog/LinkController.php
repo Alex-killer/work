@@ -34,11 +34,9 @@ class LinkController extends Controller
         }
     }
 
-    public function edit($id)
+    public function edit(Link $link)
     {
-        $link = Link::findOrFail($id);
-
-        return view('blog.links.edit_link',compact('link'));
+        return view('blog.links.edit_link', compact('link'));
     }
 
     /**

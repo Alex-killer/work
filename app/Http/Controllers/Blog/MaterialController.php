@@ -78,10 +78,10 @@ class MaterialController extends Controller
      */
     public function show(Material $material)
     {
-        $linkList = Link::where('material_id', '=', $material->id)->get();
+        $links = Link::where('material_id', '=', $material->id)->get();
 
         return view('blog.materials.view_material',
-            compact('linkList', 'material'));
+            compact('links', 'material'));
     }
 
     /**
