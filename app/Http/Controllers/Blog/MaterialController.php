@@ -31,7 +31,10 @@ class MaterialController extends Controller
         $materials = $builder->orderBy('id', 'ASC')
             ->paginate(10);
 
-        return view('blog.materials.list_material', compact('materials'));
+        return view('blog.materials.list_material', [
+            'materials' => $materials,
+            'search'    => $request->search
+        ]);
 
     }
 
